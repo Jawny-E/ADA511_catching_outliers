@@ -33,13 +33,13 @@ def makeSample():
                 s += answer(p-q)
         sample.append(s)
     
-    return sample, cheater
+    return sample, cheater, questions
 
-for i in range(1, 2):
+for i in range(1, 11):
     
-    sample, cheater = makeSample()
+    sample, cheater, questions = makeSample()
 
-    with open(f'datasets/sample{i}.csv', mode='w', newline='\n') as file:
+    with open(f'datasets/sample{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         for s in sample:
             writer.writerow([s])
@@ -47,3 +47,8 @@ for i in range(1, 2):
     with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([cheater])
+
+    with open(f'datasets/questions{i}.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        for q in questions:
+            writer.writerow([q])
