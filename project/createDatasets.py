@@ -46,9 +46,9 @@ for i in range(1, 2):
         for index, s in enumerate(sample):
             writer.writerow(['c' if index == cheater else 't', players[index], *s])
                      
-    with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([cheater])
+    #with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
+    #    writer = csv.writer(file)
+    #    writer.writerow([cheater])
 
     with open(f'datasets/questions{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
