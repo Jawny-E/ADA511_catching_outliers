@@ -40,11 +40,11 @@ for i in range(1, 2):
     sample, cheater, questions, players = makeSample()
     
     with open(f'datasets/sample{i}.csv', mode='w', newline='') as file:
-        header = ["Status"] + ["Skill"] + [f"S{j+1}" for j in range(numberOfQuestions)]
+        header = ["Index"] + ["Status"] + ["Skill"] + [f"S{j+1}" for j in range(numberOfQuestions)]
         writer = csv.writer(file)
         writer.writerow(header)
         for index, s in enumerate(sample):
-            writer.writerow(['c' if index == cheater else 't', players[index], *s])
+            writer.writerow([index,'c' if index == cheater else 't', players[index], *s])
                      
     #with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
     #    writer = csv.writer(file)
