@@ -6,7 +6,7 @@ on:
   pull_request:
     branches:
       - main
-job:
+jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
