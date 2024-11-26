@@ -52,6 +52,10 @@ for i in range(1, 2):
 
     with open(f'datasets/questions{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(["Index", "Difficulty"])
+        header = ["Index"] + ["Diffuculty"] + [f"S{j+1}" for j in range(numberOfQuestions)]
+        writer.writerow(header)
         for index, q in enumerate(questions):
-            writer.writerow([index, q])
+            app = []
+            for s in sample:
+                app.append(s[index])
+            writer.writerow([index, q, *app])
