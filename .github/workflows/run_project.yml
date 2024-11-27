@@ -28,3 +28,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
+      - name: Run a Python file
+        run: python .\final\test.py
