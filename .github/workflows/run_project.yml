@@ -29,4 +29,9 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Run a Python file
-        run: python final/*.py
+        run: |
+          set -e
+          for file in final/*.py; do
+            echo "Running $file"
+            python "$file"
+          done
