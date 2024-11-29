@@ -1,9 +1,11 @@
 import csv
 import numpy as np
+import matplotlib.pyplot as plt
 
 numberOfPlayers = 10
 numberOfQuestions = 10
 chanceOfCheating = 0.5 # 
+
 decimalPlaces = 1
 
 # the sigmoid function - returns a number between 0 and 1. Gives the change of success
@@ -17,6 +19,7 @@ def answer(x):
 # returns players with skill between -3 and 3, with normal distribution
 def createPlayersNormal():
     return np.round(np.random.normal(0, 1, numberOfPlayers), decimalPlaces)
+
 
 # returns questions with difficulty between -3 and 3, with uniform distribution
 def createQuestions():
@@ -70,11 +73,16 @@ for i in range(1, 2):
         for index, s in enumerate(sample):
             writer.writerow([index,'c' if index == cheater else 't', players[index], *s])
                      
-    # For creating csv for cheater and question difficulty
+
+""" # For creating csv for cheater and question difficulty
     #with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
     #    writer = csv.writer(file)
     #    writer.writerow([cheater])
-    """
+    
+    with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([cheater])
+
     with open(f'datasets/questions{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         header = ["Index"] + ["Diffuculty"] + [f"S{j}" for j in range(numberOfPlayers)]
