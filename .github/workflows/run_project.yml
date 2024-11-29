@@ -29,8 +29,8 @@ jobs:
       - name: Intall dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pandas
-      - name: Run a Python file
+          python -m pip install -r requirements.txt
+      - name: Run Python files in the directory /final
         run: |
           set -e
           for file in final/*.py; do
