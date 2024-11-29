@@ -15,7 +15,7 @@ if debug:
 
 # ********************* Functions ********************* #
 # Standard Sigmoid function
-# Input: a float/int between [-3, 3]
+# Input: a float/int between [-6, 6]
 # Output: a float between [0, 1]
 def sigmoid(x):
     return 1/(1+np.exp(-x))
@@ -49,6 +49,8 @@ def getProbOfResultGivenSkill(student):
     cp = getProbabilityOfFailures(fails, 10, p_failure)
     return cp
 
+# Iterates through all the students scores to find
+# their probability of scoring as they did or better
 def getAllStudentsProbScore():
     results = []
     for i in range(students_len):

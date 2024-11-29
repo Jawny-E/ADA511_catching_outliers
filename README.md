@@ -59,11 +59,9 @@ Here we can see that we have the following variates in the datasets are as follo
 If you do not know the Intelligence of the student, Truthfulness or the Difficulty of the question. All you have to base your assumption on is the set of Successes. It is here virtually impossible to differentiate between a true outlier or a cheater. You could use the following definitions to try to determine the cheater, but you would quickly find that you often will end up accusing the best-scorer every single exam. 
 - $P(S_1=success | S_2=success, Z) = P(S_1= success| Z)$
 - $P(T=cheater) = 1 - (totalscore=score ∨ totalscore=score+1 ∨ totalscore=score+2 ∨ ... |Z)$
-- $$
-
 
 #### Method 1: Test scores and skill-levels
-The second possible way of looking at this problem is to assume that every answer is independent of each other, and that the student has equal probabilty of answering correctly on every single question, given a previously established intelligence(skill) score. We can then learn about a quantity from similar quantities. To find the probaility of Success appearing equally or more times than the student achived
+The second possible way of looking at this problem is to assume that every answer is independent of each other, and that the student has equal probabilty of answering correctly on every single question, given a previously established intelligence(skill) score. We can then learn about a quantity from similar quantities. To find the probaility of Success appearing equally or more times than the student achived. We then identify the dishonest outlier as the person with the lowest probability of scoring as they did or lower
 We can then use the following relations:
 - $P(S_1=success | S_2=success, Z) = P(S_1= success, Z)$
 - $P(T=cheater|I=i, Z) = 1 - P(totalscore=score ∨ totalscore=score+1 ∨ totalscore=score+2 ∨ ...| I=i, Z)$
