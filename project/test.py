@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from scipy.stats import binom
 
 sample = pd.read_csv("datasets/sample1.csv", index_col=0)
@@ -9,20 +9,7 @@ questions = pd.read_csv("datasets/questions1.csv", index_col=0)
 def sigmoid(x):
     return 1/(1+np.exp(-x))
 
-"""
-difficulty = (questions.loc[0, 'Diffuculty']) # get the data at index 0 in column 'Difficulty'
-
-sum = 0
-j = 0
-for i in range(0,10):
-    prob = round(sigmoid(sample.loc[j, 'Skill'] - questions.loc[i, 'Diffuculty']), 2) #probability of answering a question correctly
-    if (questions.loc[i, f'S{j}'] == 0):
-        prob = round(1 - prob, 2)
-    # print(f'{prob}, {questions.loc[i, f'S{j}']}') #print probability and answers
-    sum += prob
-"""
-    
-# print(round(sum/100, 2))
+# questions.loc[0, 'Diffuculty'] # get the data at index 0 in column 'Difficulty'
 
 # find mean prob of getting all those questions right. Need to find what it should have been? Or is that what we do?
 def findMeanProb(player):
@@ -37,11 +24,11 @@ def findMeanProb(player):
     return round(sum/count, 2)
 
 def getCorrectGuesses(player):
-    count = 0
+    n = 0
     for i in range(0,10):
         if(sample.loc[player, f'S{i}'] == 1):
-            count += 1
-    return count
+            n += 1
+    return n
 
 def findProbOfResultGivenSkill():
     min = 1
