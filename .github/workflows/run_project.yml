@@ -1,4 +1,4 @@
-name: Github Actions demo
+name: Run the Project
 run-name: ${{ github.actor }} is running a test from their Pull Request :)
 on:
   workflow_dispatch:
