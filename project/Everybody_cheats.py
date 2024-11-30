@@ -41,6 +41,7 @@ def compute_likelihood_for_all_students():
 
 # Compute likelihoods for all students
 likelihoods = compute_likelihood_for_all_students()
+print(likelihoods)
 # Identify the student with the highest likelihood of being the cheater
 cheater_index = likelihoods.index(max(likelihoods))
 
