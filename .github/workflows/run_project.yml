@@ -30,7 +30,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-      - name: Run Python files in the directory /final
+      - name: Results
         run: |
           set -e
           echo "::group::Running Python files"
@@ -40,7 +40,7 @@ jobs:
             echo "-----------------------------------"
           done
           echo "::endgroup::"
-      - name: Summary of Results
+      - name: Summary of Run
         run: |
           echo "::notice::✅ All Python files executed successfully!"
           echo "::notice::Review the log above for detailed outputs."
