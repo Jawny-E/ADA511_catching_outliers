@@ -32,7 +32,7 @@ def getCorrectAnswers(student):
 # Input: intger, integer, float in range [0,1]
 # Output: float [0, 1]
 def getProbabilityOfFailures(fails, question_len, p):
-    cp = binom.cdf(fails, 10, p)
+    cp = binom.cdf(fails, questions_len, p)
     if debug:
         print(f"The likelyhood of failing {fails} times or less, given {question_len} tries, and probability of failing {p} is: {cp}")
     return cp
@@ -46,7 +46,7 @@ def getProbOfResultGivenSkill(student):
     fails = questions_len - corrects
     skill = df.loc[student, 'Skill']
     p_failure = 1 - sigmoid(skill)
-    cp = getProbabilityOfFailures(fails, 10, p_failure)
+    cp = getProbabilityOfFailures(fails, questions_len, p_failure)
     return cp
 
 # Iterates through all the students scores to find
