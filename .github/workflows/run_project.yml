@@ -1,5 +1,5 @@
 name: Run the Project
-run-name: ${{ github.actor }} is running a test from their Pull Request :)
+run-name: ${{ github.actor }} is running the project
 on:
   workflow_dispatch:
   pull_request:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Results with Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,7 +33,14 @@ jobs:
       - name: Run Python files in the directory /final
         run: |
           set -e
+          echo "::group::Running Python files"
           for file in final/*.py; do
             echo "***** Running file: $file *****"
             python "$file"
+            echo "-----------------------------------"
           done
+          echo "::endgroup::"
+      - name: Summary of Results
+        run: |
+          echo "::notice::✅ All Python files executed successfully!"
+          echo "::notice::Review the log above for detailed outputs."
