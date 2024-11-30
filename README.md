@@ -8,6 +8,13 @@ This project is inspired by a Code-Jam Qualification round in 2021, which gives 
 
 This material is not available online anymore, we had to employ the waybackmachine to get the problem description. We have further made adjustments to make the amount of students, the amount of questions and the probability of cheating on any given question variables so that it's simple to retest for your presumed scenario. 
 
+The scenario itself gives us the following information of probability:
+$P(success|non-cheater, Z)=f(S_i-Q_i)$
+$P(success|cheater, Z)=0.5\cdot 1 + 0.5f(S_i-Q_i)$
+$P(cheater)= \frac{1}{students} = 1-P(non-cheater)$
+$P(Q_i=q|Z)=\frac{1}{(6\cdot 10^{accuracy})+1}$ e.g. if you use 0 decimal places, it would be $P(Q_i=q|Z)=\frac{1}{6+1}$
+$P(S_i=s|Z)=\frac{1}{(6\cdot 10^{accuracy})+1}$ e.g. if you use 2 decimal places, it would be $P(Q_i=q|Z)=\frac{1}{600+1}$
+
 ## Some cool Background info
 Some related subjects we looked into during the subject, that are interesting reading for the problem at hand
 ### The Sigmoid Function
