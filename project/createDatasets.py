@@ -2,8 +2,9 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 
-numberOfPlayers = 10
-numberOfQuestions = 10
+numberOfPlayers = 100
+numberOfQuestions = 100
+
 chanceOfCheating = 0.5 # 
 
 decimalPlaces = 1
@@ -19,7 +20,6 @@ def answer(x):
 # returns players with skill between -3 and 3, with normal distribution
 def createPlayersNormal():
     return np.round(np.random.normal(0, 1, numberOfPlayers), decimalPlaces)
-
 
 # returns questions with difficulty between -3 and 3, with uniform distribution
 def createQuestions():
@@ -65,6 +65,7 @@ def makeSampleWithoutDifficulty():
 for i in range(1, 2):
     # sample, cheater, questions, players = makeSampleWithDifficulty()
     sample, cheater, players = makeSampleWithoutDifficulty()
+
     
     with open(f'datasets/sample{i}.csv', mode='w', newline='') as file:
         header = ["Index"] + ["Truthfulness"] + ["Skill"] + [f"S{j}" for j in range(numberOfQuestions)]
@@ -72,24 +73,14 @@ for i in range(1, 2):
         writer.writerow(header)
         for index, s in enumerate(sample):
             writer.writerow([index,'c' if index == cheater else 't', players[index], *s])
-                     
-
-""" # For creating csv for cheater and question difficulty
-    #with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
-    #    writer = csv.writer(file)
-    #    writer.writerow([cheater])
-    
-    with open(f'datasets/cheater{i}.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([cheater])
-
     with open(f'datasets/questions{i}.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
-        header = ["Index"] + ["Diffuculty"] + [f"S{j}" for j in range(numberOfPlayers)]
+        header = ["Index"] + ["Difficulty"] + [f"S{j}" for j in range(numberOfPlayers)]
         writer.writerow(header)
         for index, q in enumerate(questions):
             app = []
             for s in sample:
                 app.append(s[index])
             writer.writerow([index, q, *app])
-"""
+                     
+
