@@ -113,7 +113,7 @@ def main():
     if len(cheaters_only) > 1:
         # 1. Maximum Relative Difference
         # identify data points that significantly deviate from their expected range or group norms, even when the absolute difference might not seem large
-        cheater_with_max_relative_diff = max(cheaters_only, key=lambda x: (float(x[1]) - float(x[2])) / max(float(x[1]), float(x[2])))
+        cheater_with_max_relative_diff = max(cheaters_only, key=lambda x: (float(x[1]) - float(x[2])) / float(x[1]))
         print(f"Using maximum relative difference, the index is {cheater_with_max_relative_diff[0]} with a relative difference of "
             f"{(float(cheater_with_max_relative_diff[1]) - float(cheater_with_max_relative_diff[2])) / max(float(cheater_with_max_relative_diff[1]), float(cheater_with_max_relative_diff[2]))}")
 
@@ -127,8 +127,8 @@ def main():
         # Measure how far a data point deviates from the mean of its group in terms of standard deviations.
         import numpy as np
         cheating_scores = np.array([float(x[1]) for x in cheaters_only])
-        normal_scores = np.array([float(x[2]) for x in cheaters_only])
-        z_scores = (cheating_scores - normal_scores.mean()) / normal_scores.std()
+        normal_scores = likelihoods_normal
+        z_scores = (cheating_scores - np.mean(normal_scores)) / np.std(normal_scores)
         cheater_with_max_z_score = cheaters_only[np.argmax(z_scores)]
         print(f"Using z-scores, the index is {cheater_with_max_z_score[0]} with a z-score of {z_scores[np.argmax(z_scores)]}")
         

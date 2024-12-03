@@ -22,9 +22,10 @@ The Sigmoid function is a logistic function written as follows: $ \sigma(x) = \f
 ![alt text](resources/sigmoid.png)
 
 Possible limitiations in our project: over-simplifying of the real-world events and assumption of independece of questions from one another. 
-### Binomial and Normal distribution
 
 ### Z-scores
+Also called the standard score, is the number of standard deviations a data-point is away from the mean value of something being measured. It is calculated using the formula $Z=\frac{x-\mu}{\sigma}$, where $x$ is the datapoint, $\mu$ is the mean of the sample, and $\sigma$ is the standard deviation of the sample. Traditionally, for a normal distribution, an outlier is defined as a datapoint that has a z-score greater than 3, in either positive or negative direction. Only 0.03% of people are found in this range. For this project we are more interested in the positive outliers than the negative ones. 
+![alt text](resources/zscore.png)
 
 ## Project description
 In short the goal of this project is to identetify outliers, who are not "natural" outliers in the population. This work will mostly be done through assumptions of behaviour, and 
@@ -86,19 +87,41 @@ We can then use the following relations:
 - $P(T=cheater|I=i, Z) = 1 - P(totalscore=score ∨ totalscore=score+1 ∨ totalscore=score+2 ∨ ...| I=i, Z)$
 - $P(totalscore=s|I=i, Z) = \binom{n}{k}\cdot p^{k}\cdot (1-p)^{n-k}$, where $n$ is the number of questions, $k$ is the number of successes and $p$ is the probability of a success. $p$ assumed to be the result of the sigmoid function dependent only on intelligence
  
-#### Method 2: Knowing scores, skills and difficulties, identify how
+#### Method 2: Being allknowing, trying to identify probable cheaters and outlier detection
+If you were allknowing and perfectly knew the difficulties and student skills on this *cough* anonymous exam *cough* you could try the following. 
+Calculate
+- $P(S_1=result\wedge S_2=result\wedge S_3=result\wedge S_4=result \wedge ... \wedge S_i=s|T=cheater,Z)$
+- $P(S_1=result\wedge S_2=result\wedge S_3=result\wedge S_4=result \wedge ... \wedge S_i=s|T=non-cheater,Z)$
 
+for all the different students and different difficulties. Then you could compare the likelyhood of a student getting their result fairly with the likelyhood of them getting it unfairly. 
+Store all the indexes where a student has a higher $P(result|cheater,Z)$ than $P(result|non-cheater,Z)
 
+Further you could apply outlier detection methods to try to figure out whom in this list is the most likely untrusthworthy outlier. 
+We apply the following methods to try to find the outlier among probable cheaters
 
+1. Relative Difference: Looks at the difference between the likelyhood of cheating and the likelyhood of not cheating for the given student. Divided by the likelyhood of cheating. For a student that is much much more likely to have cheated this should go towards 1, and for a student that barely was more likely to cheat than to have gotten their answers truthfully it should be closer to 0
+2. Ratio-analysis: Looking at the ratio between cheating likelyhood and normal likelyhood. Similarly to the previous metric, this highlights cases where the likelihood of cheating is overwhelmingly higher than the likelihood of normal performance.
+3. Z-scores: The Z-score measures how many standard deviations a value (cheating likelihood) is from the mean of the normal likelihoods. We try to apply this to find the most extreme outlier from the baseline group of students. This unlike the others will give us the most extreme outlier only, which often can point us to a smart student instead of our cheater. 
 
-#### Method 3: Scenario expansion, you are only responsible for parts of the exam
-In many university courses it is common for several lecturers to share the responsibility of teaching and grading a singe course. An example of this is ADA512, which is a combination of IoT, Networking and Control Systems. Limiting you in your dataset of the students.
-
-#### Method 4: A simple application of neural networks
+#### Method 3: Kristina you got this :)
 
 ## How to install and setup the project
 This project has inbuilt GitHub actions, where all methods in the final directory are ran and tested. It is set up to run both when an update is made to a Pull Request and manually from dispatch, you can edit this to fit your workflow better. Fork this repository to quickly take advantage of these methods. 
 ![alt text](resources/actions.png)
 Otherwise the files should be simple enough to download and run by yourself, all Python libraries used are listed in the file requirements.txt.
+![alt text](resources/results.png)
 ### Results
-None of the methods in the project can boast perfect identification of the cheater, and some methods assume information that might be impossible to estimate in a real-life situation. The methods applied here might better be called an exploration of the scenario using ADA511, than a defintive solution. However, it must be mentioned that XYZ
+![](resources/choices.png)
+None of the methods in the project can boast perfect identification of the cheater, and some methods assume information that might be impossible to estimate in a real-life situation. The methods applied here might better be called an exploration of the scenario using ADA511, than a defintive solution. We see from our methods that it is very difficult to differentiate between a true outlier, a very lucky person and someone who cheated on the exam. However, it must be mentioned that our technniques that try to identify all potential cheaters, are including the registered cheater in their list. So you could potentially have a very stern talk with all of them to try to figure it out.
+
+### Further development
+Since this task became more complex than expected, we didn't get to implement everything we originally wanted, so here is a list of all our *totally cool and awesome* ideas for future development.
+- Machine learning: a potential alternative method for solving the problem in the scenario could be through training a neural network to try to predict the Truthfulness of a student
+- Returning answers P(T=cheater|Z) as a probability distribution over all the different students, honestly just returning P(T=cheater|Z) would be a great step for further exploration
+- Trying to adapt the Optimal Predictor Machine to fit the 
+- Trying to limit the dataset for the agent, in the scenario this could be that one lecturer only gets 60% of the answers since the subject has multiple spearate parts (like Cyber Physical Systems)
+- Utilities: we would love to apply utilities and decision trees to the solution. There might be gains or losses for the agent if they accuse the right or wrong student of cheating. 
+- Frontend: Although we are happy with the GitHub Actions implementation, Ellen wants to get the actions to update a GitHub page that more clearly displays the results. This would also make it more accessible to users without knowledge of GitHub. Kristina wants a more interactive frontend (maybe a game as well!) where users can edit the premises of calcultation quickly.
+
+![alt text](resources/development.png)
+
