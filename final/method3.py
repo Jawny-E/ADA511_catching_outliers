@@ -23,7 +23,7 @@ def sigmoid(x):
 def getDifficulties():
     difficulties = []
     for i in range(numberOfQuestions):
-        difficulties.append(questions.loc[i, 'Diffuculty'])
+        difficulties.append(questions.loc[i, 'Difficulty'])
     return difficulties
 
 # Find estimated difficulties for each question
