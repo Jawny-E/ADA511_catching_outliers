@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 numberOfPlayers = 100
 numberOfQuestions = 100
+
 chanceOfCheating = 0.5 # 
 
 decimalPlaces = 1
@@ -17,17 +18,19 @@ def answer(x):
     return '1' if np.random.uniform(0,1) < sigmoid(x) else '0' 
 
 # returns players with skill between -3 and 3, with normal distribution
-def createPlayers():
-    return np.round(np.random.uniform(-3, 3, numberOfPlayers), decimalPlaces)
-
+def createPlayersNormal():
+    return np.round(np.random.normal(0, 1, numberOfPlayers), decimalPlaces)
 
 # returns questions with difficulty between -3 and 3, with uniform distribution
 def createQuestions():
     return np.round(np.random.uniform(-3,3, numberOfQuestions), decimalPlaces)
 
+def createPlayersUniform():
+    return np.round(np.random.uniform(-3,3, numberOfPlayers), decimalPlaces)
+
 def makeSampleWithDifficulty():
 
-    players = createPlayers()
+    players = createPlayersUniform()
     questions = createQuestions()
 
     # choose a random cheater (index, so our players are numbered 0-99, instead of 1-100)
@@ -46,7 +49,7 @@ def makeSampleWithDifficulty():
     return sample, cheater, questions, players
 
 def makeSampleWithoutDifficulty():
-    players = createPlayers()
+    players = createPlayersNormal()
     cheater = np.random.randint(0, numberOfPlayers)
     sample = []
     for i, p in enumerate(players):
@@ -60,8 +63,9 @@ def makeSampleWithoutDifficulty():
     return sample, cheater, players 
 
 for i in range(1, 2):
-    # sample, cheater, questions, players = makeSample()
-    sample, cheater, questions, players = makeSampleWithDifficulty()
+    # sample, cheater, questions, players = makeSampleWithDifficulty()
+    sample, cheater, players = makeSampleWithoutDifficulty()
+
     
     with open(f'datasets/sample{i}.csv', mode='w', newline='') as file:
         header = ["Index"] + ["Truthfulness"] + ["Skill"] + [f"S{j}" for j in range(numberOfQuestions)]
