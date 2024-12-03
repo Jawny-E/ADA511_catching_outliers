@@ -154,7 +154,7 @@ None of the methods in the project can boast perfect identification of the cheat
 ### Further development
 Since this task became more complex than expected, we didn't get to implement everything we originally wanted, so here is a list of all our *totally cool and awesome* ideas for future development.
 - Machine learning: a potential alternative method for solving the problem in the scenario could be through training a neural network to try to predict the Truthfulness of a student
-- Returning answers P(T=cheater|Z) as a probability distribution over all the different students, honestly just returning P(T=cheater|Z) would be a great step for further exploration
+- Returning answers P(T=cheater|Z) as a probability distribution over all the different students, honestly just returning P(T=cheater|Z) with security would be a great step for further exploration
 - Trying to adapt the Optimal Predictor Machine to fit the 
 - Trying to limit the dataset for the agent, in the scenario this could be that one lecturer only gets 60% of the answers since the subject has multiple spearate parts (like Cyber Physical Systems)
 - Utilities: we would love to apply utilities and decision trees to the solution. There might be gains or losses for the agent if they accuse the right or wrong student of cheating. 
