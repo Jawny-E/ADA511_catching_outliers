@@ -12,7 +12,7 @@
          - [Method 0: Just test scores](#method-0-just-test-scores)
          - [Method 1: Test scores and skill-levels](#method-1-test-scores-and-skill-levels)
          - [Method 2: Being allknowing, trying to identify probable cheaters and outlier detection](#method-2-being-allknowing-trying-to-identify-probable-cheaters-and-outlier-detection)
-         - [Method 3: Kristina you got this :)](#method-3-kristina-you-got-this-)
+         - [Method 3: Not knowing the skill, and not necessarily knowing the difficulty](#method-3-kristina-you-got-this-)
    * [How to install and setup the project](#how-to-install-and-setup-the-project)
       + [Results](#results)
       + [Further development](#further-development)
@@ -137,7 +137,10 @@ We apply the following methods to try to find the outlier among probable cheater
 3. Z-scores: The Z-score measures how many standard deviations a value (cheating likelihood) is from the mean of the normal likelihoods. We try to apply this to find the most extreme outlier from the baseline group of students. This unlike the others will give us the most extreme outlier only, which often can point us to a smart student instead of our cheater. 
 
 <!-- TOC --><a name="method-3-kristina-you-got-this-"></a>
-#### Method 3: Kristina you got this :)
+#### Method 3: Not knowing the skills of the students, and both knowing the difficulties, and using estimated difficulties based on number of successfull answers
+First the method calculated the probability for a result of a student, for each skill in the range [-3,3], given a difficulty for each question. It calculates for both cheating and being truthfull, for each skill. It then summarized the probabilites for all skills, both for cheating and truthfullness and finds the ratio between the ones that have a greater probability for being a cheater. It finds the student with the highest ratio.
+It checks against both the actual difficulties, but also estimated diffiiculties based on how many has answered a question correct. Naturally, estimating the difficulties of the questions works poorly if few students have taken the test.
+With enough questions and students this method can identify the cheater when just given the results, not knowing skills or difficulties.
 
 <!-- TOC --><a name="how-to-install-and-setup-the-project"></a>
 ## How to install and setup the project
